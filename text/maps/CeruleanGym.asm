@@ -26,9 +26,9 @@ _CeruleanGymText_5c7c3::
 	done
 
 _CeruleanGymText_5c7c8::
-	text "The CASCADEBADGE"
-	line "makes all #MON"
-	cont "up to L30 obey!"
+	text "The CascadeBadge"
+	line "makes all #mon"
+	cont "up to Lv40 obey!"
 
 	para "That includes"
 	line "even outsiders!"
