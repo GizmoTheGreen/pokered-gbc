@@ -168,6 +168,7 @@ ClipboardSprite:       INCBIN "gfx/sprites/clipboard.2bpp"
 SnorlaxSprite:         INCBIN "gfx/sprites/snorlax.2bpp"
 OldAmberSprite:        INCBIN "gfx/sprites/old_amber.2bpp"
 LyingOldManSprite:     INCBIN "gfx/sprites/lying_old_man.2bpp"
+BillSprite:            INCBIN "gfx/sprites/bill.2bpp"
 
 
 SECTION "Graphics (BANK 4)", ROMX

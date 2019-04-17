@@ -458,6 +458,9 @@ SpritePaletteAssignments: ; Characters on the overworld
 
 	; 0x3d: SPRITE_BALL
 	db SPR_PAL_ORANGE
+	
+	; SPRITE BILL
+	db SPR_PAL_ORANGE
 
 	; 0x3e: SPRITE_OMANYTE
 	db SPR_PAL_ORANGE
