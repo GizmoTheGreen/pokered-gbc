@@ -2105,7 +2105,7 @@ _MonsStatsRoseText::
 	text "@@"
 
 _GreatlyRoseText::
-	text $4c, "greatly@@"
+	text $4c, "sharply@@"
 
 _RoseText::
 	text " rose!"
@@ -2118,7 +2118,7 @@ _MonsStatsFellText::
 	text "@@"
 
 _GreatlyFellText::
-	text $4c, "greatly@@"
+	text $4c, "harshly@@"
 
 _FellText::
 	text " fell!"
