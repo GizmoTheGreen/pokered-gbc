@@ -411,13 +411,13 @@ _OaksLabText_4421a::
 	text "You finally got at"
 	line "least 50 species!"
 	cont "Be sure to get"
-	cont "EXP.ALL from my"
+	cont "EXP.SHARE from my"
 	cont "AIDE!"
 	done
 
-_OaksLabText_4421f::
-	text "Ho! This is geting"
-	line "even better!"
+_OaksLabText_4421f:: ; 959b8 (25:59b8)
+	text "Oh! This is get-"
+	line "ting even better!"
 	done
 
 _OaksLabText_44224::
@@ -472,6 +472,6 @@ _OaksLabText_44247::
 
 _OaksLabText_4424c::
 	text "Your #DEX is"
-	line "entirely complete!"
+	line "fully complete!"
 	cont "Congratulations!"
 	done

@@ -77,19 +77,21 @@ _Route8AfterBattleText5::
 	cont "gates at SAFFRON."
 	done
 
-_Route8BattleText6::
-	text "MEOWTH is so cute,"
-	line "meow, meow, meow!"
+_Route8BattleText6:: ; 8e092 (23:6092)
+	text "I like skirts,"
+	line "they're cute and"
+    cont "comfy to wear!"
 	done
 
-_Route8EndBattleText6::
-	text "Meow!"
+_Route8EndBattleText6:: ; 8e0b8 (23:60b8)
+	text "Oh my!"
 	prompt
 
-_Route8AfterBattleText6::
-	text "I think PIDGEY"
-	line "and RATTATA"
-	cont "are cute too!"
+_Route8AfterBattleText6:: ; 8e0bf (23:60bf)
+	text "Oh well, I'm more"
+	line "worried about"
+	cont "having fun than"
+    cont "being competitive."
 	done
 
 _Route8BattleText7::

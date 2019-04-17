@@ -912,7 +912,7 @@ FaintEnemyPokemon:
 	call SaveScreenTilesToBuffer1
 	xor a
 	ld [wBattleResult], a
-	ld b, EXP_ALL
+	ld b, EXP_SHARE
 	call IsItemInBag
 	push af
 	jr z, .giveExpToMonsThatFought ; if no exp all, then jump
@@ -7342,10 +7342,14 @@ PoisonEffect:
 	and a
 	jr nz, .noEffect ; miss if target is already statused
 	ld a, [hli]
-	cp POISON ; can't poison a poison-type target
+	cp POISON ; can't posion a poison-type target
+	jr z, .noEffect
+	cp STEEL ; can't poison a steel-type target
 	jr z, .noEffect
 	ld a, [hld]
-	cp POISON ; can't poison a poison-type target
+	cp POISON ; can't posion a poison-type target
+	jr z, .noEffect
+	cp STEEL ; can't poison a steel-type target
 	jr z, .noEffect
 	ld a, [de]
 	cp POISON_SIDE_EFFECT1

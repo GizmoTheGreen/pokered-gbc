@@ -446,9 +446,9 @@ BillsHousePokemonListText1:
 
 BillsMonListText:
 	db   "EEVEE"
-	next "FLAREON"
-	next "JOLTEON"
 	next "VAPOREON"
+	next "JOLTEON"
+	next "FLAREON"
 	next "CANCEL@"
 
 BillsHousePokemonListText2:
