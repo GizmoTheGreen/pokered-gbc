@@ -410,6 +410,7 @@ FishingAnim:
 	cp $2
 	ld hl, NothingHereText
 	jr z, .done
+	
 
 ; there was a bite
 
@@ -501,6 +502,8 @@ RedFishingTiles:
 	dw RedFishingRodTiles
 	db 3, BANK(RedFishingRodTiles)
 	dw vNPCSprites2 + $7d0
+	
+	
 
 _HandleMidJump:
 	ld a, [wPlayerJumpingYScreenCoordsIndex]

@@ -1,11 +1,25 @@
 ChoosePlayerName:
 	call OakSpeechSlidePicRight
+	ld a, [wPlayerGender] ; added gendercheck
+	and a
+	jr nz, .AreGirl ; skip to girl names if you are a girl instead
 	ld de, DefaultNamesPlayer
 	call DisplayIntroNameTextBox
 	ld a, [wCurrentMenuItem]
 	and a
 	jr z, .customName
 	ld hl, DefaultNamesPlayerList
+	call GetDefaultName
+	ld de, wPlayerName
+	call OakSpeechSlidePicLeft
+	jr .done
+.AreGirl ;copy of boy names routine but with girls names.
+    ld de, DefaultNamesGirl
+	call DisplayIntroNameTextBox
+	ld a, [wCurrentMenuItem]
+	and a
+	jr z, .customName
+	ld hl, DefaultNamesGirlList
 	call GetDefaultName
 	ld de, wPlayerName
 	call OakSpeechSlidePicLeft
@@ -22,6 +36,12 @@ ChoosePlayerName:
 	call Delay3
 	ld de, RedPicFront
 	ld b, BANK(RedPicFront)
+	ld a, [wPlayerGender] ;; added gender check
+	and a ;; added gender check
+	jr z, .AreBoy3
+	ld de, LeafPicFront
+	ld b, Bank(LeafPicFront)
+.AreBoy3
 	call IntroDisplayPicCenteredOrUpperRight
 .done
 	ld hl, YourNameIsText
@@ -191,8 +211,15 @@ IF DEF(_RED)
 DefaultNamesPlayer:
 	db   "NEW NAME"
 	next "RED"
-	next "ASH"
-	next "JACK"
+	next "SIMON"
+	next "JAX"
+	db   "@"
+	
+DefaultNamesGirl:
+	db   "NEW NAME"
+	next "LEAF"
+	next "BABBI"
+	next "ELSA"
 	db   "@"
 
 DefaultNamesRival:
@@ -207,8 +234,15 @@ IF DEF(_BLUE)
 DefaultNamesPlayer:
 	db   "NEW NAME"
 	next "BLUE"
-	next "GARY"
-	next "JOHN"
+	next "SIMON"
+	next "JAX"
+	db   "@"
+
+DefaultNamesGirl:
+	db   "NEW NAME"
+	next "LEAF"
+	next "BABBI"
+	next "ELSA"
 	db   "@"
 
 DefaultNamesRival:
@@ -247,8 +281,13 @@ IF DEF(_RED)
 DefaultNamesPlayerList:
 	db "NEW NAME@"
 	db "RED@"
-	db "ASH@"
-	db "JACK@"
+	db "SIMON@"
+	db "JAX@"
+DefaultNamesGirlList:
+	db "NEW NAME@"
+	db "LEAF@"
+	db "BABBI@"
+	db "ELSA@"
 DefaultNamesRivalList:
 	db "NEW NAME@"
 	db "BLUE@"
@@ -259,8 +298,13 @@ IF DEF(_BLUE)
 DefaultNamesPlayerList:
 	db "NEW NAME@"
 	db "BLUE@"
-	db "GARY@"
-	db "JOHN@"
+	db "SIMON@"
+	db "JAX@"
+DefaultNamesGirlList:
+	db "NEW NAME@"
+	db "LEAF@"
+	db "BABBI@"
+	db "ELSA@"
 DefaultNamesRivalList:
 	db "NEW NAME@"
 	db "RED@"

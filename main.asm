@@ -168,8 +168,9 @@ ClipboardSprite:       INCBIN "gfx/sprites/clipboard.2bpp"
 SnorlaxSprite:         INCBIN "gfx/sprites/snorlax.2bpp"
 OldAmberSprite:        INCBIN "gfx/sprites/old_amber.2bpp"
 LyingOldManSprite:     INCBIN "gfx/sprites/lying_old_man.2bpp"
-BillSprite:            INCBIN "gfx/sprites/bill.2bpp"
-
+;BillSprite:            INCBIN "gfx/sprites/bill.2bpp"
+BrunoSprite:           INCBIN "gfx/sprites/bruno.2bpp"
+LoreleiSprite:         INCBIN "gfx/sprites/lorelei.2bpp"
 
 SECTION "Graphics (BANK 4)", ROMX
 
@@ -232,6 +233,8 @@ ELSE
 RedPicFront:: INCBIN "pic/trainer/red.pic"
 ENDC
 
+LeafPicFront:: INCBIN "pic/gstrainer/leaf.pic"
+
 ShrinkPic1::  INCBIN "pic/trainer/shrink1.pic"
 ShrinkPic2::  INCBIN "pic/trainer/shrink2.pic"
 
@@ -256,7 +259,9 @@ ENDC
 SECTION "NPC Sprites 2", ROMX ; BANK $05
 
 RedCyclingSprite:     INCBIN "gfx/sprites/cycling.2bpp"
+LeafCyclingSprite:    INCBIN "gfx/sprites/leafcycling.2bpp"
 RedSprite:            INCBIN "gfx/sprites/red.2bpp"
+LeafSprite:           INCBIN "gfx/sprites/leaf.2bpp"
 BlueSprite:           INCBIN "gfx/sprites/blue.2bpp"
 OakSprite:            INCBIN "gfx/sprites/oak.2bpp"
 BugCatcherSprite:     INCBIN "gfx/sprites/bug_catcher.2bpp"
@@ -292,8 +297,6 @@ YoungBoySprite:       INCBIN "gfx/sprites/young_boy.2bpp"
 GameboyKidSprite:     INCBIN "gfx/sprites/gameboy_kid.2bpp"
 ClefairySprite:       INCBIN "gfx/sprites/clefairy.2bpp"
 AgathaSprite:         INCBIN "gfx/sprites/agatha.2bpp"
-BrunoSprite:          INCBIN "gfx/sprites/bruno.2bpp"
-LoreleiSprite:        INCBIN "gfx/sprites/lorelei.2bpp"
 SeelSprite:           INCBIN "gfx/sprites/seel.2bpp"
 
 
@@ -672,6 +675,7 @@ PidgeotPicBack:     INCBIN "pic/gsmonback/pidgeotb.pic"
 StarmiePicFront:    INCBIN "pic/gsmon/starmie.pic"
 StarmiePicBack:     INCBIN "pic/gsmonback/starmieb.pic"
 RedPicBack:         INCBIN "pic/gstrainer/redb.pic"
+LeafPicBack:        INCBIN "pic/gstrainer/leafb.pic"
 OldManPic:          INCBIN "pic/gstrainer/oldman.pic"
 
 GastlyPicFront:     INCBIN "pic/gsmon/gastly.pic"
@@ -710,7 +714,10 @@ INCLUDE "engine/battle/moveEffects/leech_seed_effect.asm"
 SECTION "Pics 3", ROMX ; BANK $0B
 
 ; Removed 'mon sprites from here
-
+BillSprite:            INCBIN "gfx/sprites/bill.2bpp"
+LeafFishingTilesFront: INCBIN "gfx/leaf_fishing_tile_front.2bpp"
+LeafFishingTilesBack:  INCBIN "gfx/leaf_fishing_tile_back.2bpp"
+LeafFishingTilesSide:  INCBIN "gfx/leaf_fishing_tile_side.2bpp"
 
 SECTION "Battle (BANK B)", ROMX
 INCLUDE "engine/battle/display_effectiveness.asm"
