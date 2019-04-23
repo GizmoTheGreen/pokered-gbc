@@ -160,7 +160,91 @@ LoadMonPartySpriteGfxWithLCDDisabled:
 	pop af
 	dec a
 	jr nz, .loop
+	;new code
+	ld a, 6
+	ld hl, wPartySpecies
+	ld de, vSprites + $180
+.loop3
+	push af
+	push hl
+	ld a, [hl]
+	ld [wd11e], a
+	push de
+	predef IndexToPokedex
+	pop de
+	ld a, [wd11e]
+	dec a
+	cp 151
+	jr c, .skipmissingno
+	ld a, 151
+.skipmissingno
+
+	ld hl, MonPartySprites
+	ld bc, $40
+
+	and a
+	jr z, .skiploop2
+.loop2
+	add hl, bc
+	dec a
+	jr nz, .loop2
+.skiploop2
+
+	ld a, BANK(MonPartySprites2)
+	push hl
+	push de
+	inc d
+	inc d
+	inc d
+	inc d
+	call FarCopyData2
+	ld a, BANK(MonPartySprites1)
+	ld bc, $40
+	pop de
+	pop hl
+	call FarCopyData2
+
+	pop hl
+	inc hl
+	pop af
+	dec a
+	jr nz, .loop3
+    ;to here
 	jp EnableLCD
+; new function!
+LoadMonPartySpriteForSpecies:
+	; wd11e = species
+	; loads where party member 0 would go
+	predef IndexToPokedex
+	ld a, [wd11e]
+	dec a
+	cp 151
+	jr c, .skipmissingno
+	ld a, 151
+.skipmissingno
+
+	ld hl, MonPartySprites
+	ld bc, $40
+
+	and a
+	jr z, .skiploop2
+.loop2
+	add hl, bc
+	dec a
+	jr nz, .loop2
+.skiploop2
+
+	ld de, vSprites + $580
+	ld a, BANK(MonPartySprites2)
+	push hl
+	call FarCopyData2
+	ld bc, $40
+	ld a, BANK(MonPartySprites1)
+	ld de, vSprites + $180
+	pop hl
+	call FarCopyData2
+	ret
+
 
 MonPartySpritePointers:
 	dw SlowbroSprite + $c0
@@ -305,21 +389,13 @@ MonPartySpritePointers:
 
 WriteMonPartySpriteOAMByPartyIndex:
 ; Write OAM blocks for the party mon in [hPartyMonIndex].
-	push hl
-	push de
-	push bc
+	;modified
 	ld a, [hPartyMonIndex]
-	ld hl, wPartySpecies
-	ld e, a
-	ld d, 0
-	add hl, de
-	ld a, [hl]
-	call GetPartyMonSpriteID
+	add a, a
+	add a, a
+	add a, $18
 	ld [wOAMBaseTile], a
 	call WriteMonPartySpriteOAM
-	pop bc
-	pop de
-	pop hl
 	ret
 
 WriteMonPartySpriteOAMBySpecies:
@@ -331,44 +407,6 @@ WriteMonPartySpriteOAMBySpecies:
 	call GetPartyMonSpriteID
 	ld [wOAMBaseTile], a
 	jr WriteMonPartySpriteOAM
-
-UnusedPartyMonSpriteFunction:
-; This function is unused and doesn't appear to do anything useful. It looks
-; like it may have been intended to load the tile patterns and OAM data for
-; the mon party sprite associated with the species in [wcf91].
-; However, its calculations are off and it loads garbage data.
-	ld a, [wcf91]
-	call GetPartyMonSpriteID
-	push af
-	ld hl, vSprites
-	call .LoadTilePatterns
-	pop af
-	add $54
-	ld hl, vSprites + $40
-	call .LoadTilePatterns
-	xor a
-	ld [wMonPartySpriteSpecies], a
-	jr WriteMonPartySpriteOAMBySpecies
-
-.LoadTilePatterns
-	push hl
-	add a
-	ld c, a
-	ld b, 0
-	ld hl, MonPartySpritePointers
-	add hl, bc
-	add hl, bc
-	add hl, bc
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-	ld c, a
-	ld a, [hli]
-	ld b, a
-	pop hl
-	jp CopyVideoData
 
 WriteMonPartySpriteOAM:
 ; Write the OAM blocks for the first animation frame into the OAM buffer and
@@ -382,15 +420,11 @@ WriteMonPartySpriteOAM:
 	add $10
 	ld b, a
 	pop af
-	cp SPRITE_HELIX << 2
-	jr z, .helix
-	call WriteSymmetricMonPartySpriteOAM
-	jr .makeCopy
-.helix
+	
 	call WriteAsymmetricMonPartySpriteOAM
 ; Make a copy of the OAM buffer with the first animation frame written so that
 ; we can flip back to it from the second frame by copying it back.
-.makeCopy
+;.makeCopy ;no copy no more
 	ld hl, wOAMBuffer
 	ld de, wMonPartySpritesSavedOAM
 	ld bc, $60
@@ -419,5 +453,4 @@ GetPartyMonSpriteID:
 
 INCLUDE "data/mon_party_sprites.asm"
 
-MonPartySprites:
-	INCBIN "gfx/mon_ow_sprites.2bpp"
+

@@ -168,9 +168,7 @@ ClipboardSprite:       INCBIN "gfx/sprites/clipboard.2bpp"
 SnorlaxSprite:         INCBIN "gfx/sprites/snorlax.2bpp"
 OldAmberSprite:        INCBIN "gfx/sprites/old_amber.2bpp"
 LyingOldManSprite:     INCBIN "gfx/sprites/lying_old_man.2bpp"
-;BillSprite:            INCBIN "gfx/sprites/bill.2bpp"
-BrunoSprite:           INCBIN "gfx/sprites/bruno.2bpp"
-LoreleiSprite:         INCBIN "gfx/sprites/lorelei.2bpp"
+
 
 SECTION "Graphics (BANK 4)", ROMX
 
@@ -259,9 +257,7 @@ ENDC
 SECTION "NPC Sprites 2", ROMX ; BANK $05
 
 RedCyclingSprite:     INCBIN "gfx/sprites/cycling.2bpp"
-LeafCyclingSprite:    INCBIN "gfx/sprites/leafcycling.2bpp"
 RedSprite:            INCBIN "gfx/sprites/red.2bpp"
-LeafSprite:           INCBIN "gfx/sprites/leaf.2bpp"
 BlueSprite:           INCBIN "gfx/sprites/blue.2bpp"
 OakSprite:            INCBIN "gfx/sprites/oak.2bpp"
 BugCatcherSprite:     INCBIN "gfx/sprites/bug_catcher.2bpp"
@@ -298,6 +294,8 @@ GameboyKidSprite:     INCBIN "gfx/sprites/gameboy_kid.2bpp"
 ClefairySprite:       INCBIN "gfx/sprites/clefairy.2bpp"
 AgathaSprite:         INCBIN "gfx/sprites/agatha.2bpp"
 SeelSprite:           INCBIN "gfx/sprites/seel.2bpp"
+BrunoSprite:          INCBIN "gfx/sprites/bruno.2bpp"
+LoreleiSprite:        INCBIN "gfx/sprites/lorelei.2bpp"
 
 
 SECTION "Battle (BANK 5)", ROMX
@@ -718,6 +716,8 @@ BillSprite:            INCBIN "gfx/sprites/bill.2bpp"
 LeafFishingTilesFront: INCBIN "gfx/leaf_fishing_tile_front.2bpp"
 LeafFishingTilesBack:  INCBIN "gfx/leaf_fishing_tile_back.2bpp"
 LeafFishingTilesSide:  INCBIN "gfx/leaf_fishing_tile_side.2bpp"
+LeafCyclingSprite:    INCBIN "gfx/sprites/leafcycling.2bpp"
+LeafSprite:           INCBIN "gfx/sprites/leaf.2bpp"
 
 SECTION "Battle (BANK B)", ROMX
 INCLUDE "engine/battle/display_effectiveness.asm"
@@ -738,7 +738,6 @@ SECTION "Pics 4", ROMX ; BANK $0C
 
 ; Removed 'mon sprites from here
 
-
 SECTION "Battle (BANK C)", ROMX
 INCLUDE "engine/battle/moveEffects/mist_effect.asm"
 INCLUDE "engine/battle/moveEffects/one_hit_ko_effect.asm"
@@ -747,7 +746,6 @@ INCLUDE "engine/battle/moveEffects/one_hit_ko_effect.asm"
 SECTION "Pics 5", ROMX ; BANK $0D
 
 ; Removed 'mon sprites from here
-
 
 SECTION "Battle (BANK D)", ROMX
 INCLUDE "engine/titlescreen2.asm"
@@ -2040,6 +2038,15 @@ INCLUDE "engine/items/tm_prices.asm"
 INCLUDE "color/animations.asm"
 
 ; Inserted pokemon images go here
+
+SECTION "partysprites",ROMX;BANK[$30]
+
+MonPartySprites:
+MonPartySprites1: INCBIN "gfx/mon_party_sprites1.2bpp"
+
+SECTION "partysprites2",ROMX;BANK[$31]
+
+MonPartySprites2: INCBIN "gfx/mon_party_sprites2.2bpp"
 
 IF GEN_2_GRAPHICS
 SECTION "bank32",ROMX

@@ -95,7 +95,10 @@ DisplayNamingScreen:
 
 	call LoadHpBarAndStatusTilePatterns
 	call LoadEDTile
-	callba LoadMonPartySpriteGfx
+	;callba LoadMonPartySpriteGfx
+	ld a, [wcf91]
+	ld [wd11e], a
+	callba LoadMonPartySpriteForSpecies
 	coord hl, 0, 4
 	ld b, 9
 	ld c, 18
@@ -479,10 +482,12 @@ PrintNamingText:
 	ld de, RivalsTextString
 	dec a
 	jr z, .notNickname
+	ld a, 0
+	ld [hPartyMonIndex], a
 	ld a, [wcf91]
-	ld [wMonPartySpriteSpecies], a
+	;ld [wMonPartySpriteSpecies], a
 	push af
-	callba WriteMonPartySpriteOAMBySpecies
+	;callba WriteMonPartySpriteOAMBySpecies
 	pop af
 	ld [wd11e], a
 	call GetMonName

@@ -272,9 +272,14 @@ ROMX $2C
 	"bank2C"
 	"Move Names" ; MOVE_NAMES
 
+; pokemon sprites new banks??
+ROMX $30 
+	org $4000
+	"partysprites"
+	
 ROMX $31
 	org $4000
-	"bank31"
+	"partysprites2"
 
 ROMX $32
 	org $4000
