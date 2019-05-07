@@ -92,7 +92,7 @@ ld hl,OakSpeechText2
     ;call ClearScreen ; clear the screen before resuming normal intro
 	call GBFadeOutToWhite
     call ClearScreen
-	call GetRedPalID 
+	;call GetRedPalID 
     ld de,RedPicFront
     lb bc, Bank(RedPicFront), $00
     ld a, [wPlayerGender] ; check gender

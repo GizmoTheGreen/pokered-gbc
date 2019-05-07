@@ -228,9 +228,9 @@ INCLUDE "engine/menu/party_menu.asm"
 
 IF GEN_2_GRAPHICS
 RedPicFront:: INCBIN "pic/gstrainer/red.pic"
-;rept 11 ; Padding
-;	db 0
-;endr
+rept 11 ; Padding
+	db 0
+endr
 ELSE
 RedPicFront:: INCBIN "pic/trainer/red.pic"
 ENDC

@@ -851,12 +851,10 @@ SetPal_TrainerCard:
 IF GEN_2_GRAPHICS
     ld a, [wPlayerGender] ;gendercheck
     and a                 ;gendercheck
-	jr z, .HEROLoad
-	ld a, PAL_ERIKA
-	jr .SkipBoy
-.HEROLoad
-    ld a, PAL_HERO
-.SkipBoy
+    ld d, PAL_ERIKA
+    jr z, .is_girl
+    ld d, PAL_HERO
+.is_girl
 ELSE
 	ld d, PAL_REDMON
 ENDC
@@ -865,9 +863,19 @@ ENDC
 
 	; Palette for border tiles
 IF DEF(_BLUE)
-	ld d, PAL_BLUEMON
+    ld a, [wPlayerGender] ;gendercheck
+    and a                 ;gendercheck
+    ld d, PAL_GREENMON
+    jr z, .is_girl2
+    ld d, PAL_BLUEMON
+.is_girl2
 ELSE ; _RED
-	ld d, PAL_REDMON
+    ld a, [wPlayerGender] ;gendercheck
+    and a                 ;gendercheck
+    ld d, PAL_GREENMON
+    jr z, .is_girl2
+    ld d, PAL_REDMON
+.is_girl2
 ENDC
 	ld e,5
 	callba LoadSGBPalette

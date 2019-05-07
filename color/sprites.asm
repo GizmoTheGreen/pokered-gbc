@@ -278,6 +278,9 @@ ClearSpritePaletteMap:
 SpritePaletteAssignments: ; Characters on the overworld
 	; 0x01: SPRITE_RED
 	db SPR_PAL_ORANGE
+	
+	; SPRITE_LEAF
+	db SPR_PAL_GREEN
 
 	; 0x02: SPRITE_BLUE
 	db SPR_PAL_BLUE
