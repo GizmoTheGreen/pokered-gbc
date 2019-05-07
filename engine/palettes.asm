@@ -78,7 +78,14 @@ IF GEN_2_GRAPHICS ; Trainers are given individualized palettes
 	; OPP_GARY, so ignore it)
 	ld a,[wLinkState]
 	cp LINK_STATE_BATTLING
-	ld a, PAL_HERO
+    ld a, [wPlayerGender] ;gendercheck
+    and a                 ;gendercheck
+	jr z, .HEROLoad
+	ld a, PAL_ERIKA
+	jr .SkipBoy
+.HEROLoad
+    ld a, PAL_HERO
+.SkipBoy
 	ret z
 
 	ld a,[wTrainerClass] ; Get trainer ID
@@ -117,7 +124,14 @@ DetermineBackSpritePaletteID:
 	jr nz,.getPaletteID ; Check if trainer?
 
 IF GEN_2_GRAPHICS
-	ld a, PAL_HERO
+    ld a, [wPlayerGender] ;gendercheck
+    and a                 ;gendercheck
+	jr z, .HEROLoad
+	ld a, PAL_ERIKA
+	jr .SkipBoy
+.HEROLoad
+    ld a, PAL_HERO
+.SkipBoy
 ELSE
 	ld a, PAL_REDMON
 ENDC

@@ -34,6 +34,7 @@ ChoosePlayerName:
 	jr z, .customName
 	call ClearScreen
 	call Delay3
+	call GetRedPalID 
 	ld de, RedPicFront
 	ld b, BANK(RedPicFront)
 	ld a, [wPlayerGender] ;; added gender check

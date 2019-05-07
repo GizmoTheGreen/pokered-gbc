@@ -849,7 +849,14 @@ SetPal_TrainerCard:
 
 	; Red's palette
 IF GEN_2_GRAPHICS
-	ld d, PAL_HERO
+    ld a, [wPlayerGender] ;gendercheck
+    and a                 ;gendercheck
+	jr z, .HEROLoad
+	ld a, PAL_ERIKA
+	jr .SkipBoy
+.HEROLoad
+    ld a, PAL_HERO
+.SkipBoy
 ELSE
 	ld d, PAL_REDMON
 ENDC

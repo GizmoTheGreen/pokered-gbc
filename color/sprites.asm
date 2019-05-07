@@ -455,6 +455,12 @@ SpritePaletteAssignments: ; Characters on the overworld
 
 	; 0x3c: SPRITE_SEEL
 	db SPR_PAL_ORANGE
+	
+	;BILL
+	db SPR_PAL_ORANGE
+	
+	; 0x49?: SPRITE_OFFICER_JENNY
+	db SPR_PAL_BLUE
 
 	; 0x3d: SPRITE_BALL
 	db SPR_PAL_ORANGE
@@ -494,7 +500,6 @@ SpritePaletteAssignments: ; Characters on the overworld
 
 	; 0x48: SPRITE_LYING_OLD_MAN
 	db SPR_PAL_BROWN
-
 
 AnimationTileset1Palettes:
 	INCBIN "color/data/animtileset1palettes.bin"

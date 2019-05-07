@@ -13,6 +13,10 @@ PICS_5 EQU $D
 
 INCLUDE "home.asm"
 
+SECTION "rom0", ROM0
+; Hooks for color hack
+INCLUDE "color/oak_intro.asm"
+
 
 SECTION "bank1", ROMX
 
@@ -90,7 +94,7 @@ INCLUDE "engine/display_pokedex.asm"
 
 ; Hooks for color hack
 INCLUDE "color/cable_club.asm"
-INCLUDE "color/oak_intro.asm"
+;INCLUDE "color/oak_intro.asm"
 IF GEN_2_GRAPHICS
 INCLUDE "color/load_hp_and_exp_bar.asm"
 ENDC
@@ -224,9 +228,9 @@ INCLUDE "engine/menu/party_menu.asm"
 
 IF GEN_2_GRAPHICS
 RedPicFront:: INCBIN "pic/gstrainer/red.pic"
-rept 11 ; Padding
-	db 0
-endr
+;rept 11 ; Padding
+;	db 0
+;endr
 ELSE
 RedPicFront:: INCBIN "pic/trainer/red.pic"
 ENDC
@@ -719,7 +723,7 @@ BillSprite:            INCBIN "gfx/sprites/bill.2bpp"
 LeafFishingTilesFront: INCBIN "gfx/leaf_fishing_tile_front.2bpp"
 LeafFishingTilesBack:  INCBIN "gfx/leaf_fishing_tile_back.2bpp"
 LeafFishingTilesSide:  INCBIN "gfx/leaf_fishing_tile_side.2bpp"
-
+OfficerJennySprite:    INCBIN "gfx/sprites/officer_jenny.2bpp"
 
 
 SECTION "Battle (BANK B)", ROMX

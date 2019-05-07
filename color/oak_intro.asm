@@ -10,13 +10,18 @@ ENDC
 	jr GotPalID
 
 GetRedPalID:
-	call ClearScreen
+    call ClearScreen
 IF GEN_2_GRAPHICS
-	ld a, PAL_HERO
+    ld a, [wPlayerGender] ;gendercheck
+    and a                 ;gendercheck
+    ld a, PAL_HERO
+    jr z, .got_pal
+    ld a, PAL_ERIKA
+.got_pal
 ELSE
-	ld a, PAL_REDMON
+    ld a, PAL_REDMON
 ENDC
-	jr GotPalID
+    jr GotPalID
 
 GetRivalPalID:
 	call ClearScreen
