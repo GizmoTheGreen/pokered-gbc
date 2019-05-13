@@ -849,12 +849,7 @@ SetPal_TrainerCard:
 
 	; Red's palette
 IF GEN_2_GRAPHICS
-    ld a, [wPlayerGender] ;gendercheck
-    and a                 ;gendercheck
-    ld d, PAL_ERIKA
-    jr z, .is_girl
     ld d, PAL_HERO
-.is_girl
 ELSE
 	ld d, PAL_REDMON
 ENDC
@@ -863,19 +858,9 @@ ENDC
 
 	; Palette for border tiles
 IF DEF(_BLUE)
-    ld a, [wPlayerGender] ;gendercheck
-    and a                 ;gendercheck
-    ld d, PAL_GREENMON
-    jr z, .is_girl2
     ld d, PAL_BLUEMON
-.is_girl2
 ELSE ; _RED
-    ld a, [wPlayerGender] ;gendercheck
-    and a                 ;gendercheck
-    ld d, PAL_GREENMON
-    jr z, .is_girl2
     ld d, PAL_REDMON
-.is_girl2
 ENDC
 	ld e,5
 	callba LoadSGBPalette
@@ -903,6 +888,60 @@ ENDC
 	ld [rSVBK],a
 	ret
 
+; Trainer card LEAF / FEMALE
+SetPal_TrainerCard_Green:
+	ld a,2
+	ld [rSVBK],a
+	
+	ld d,PAL_MEWMON
+	ld e,0
+	callba LoadSGBPalette
+	ld d,PAL_BADGE
+	ld e,1
+	callba LoadSGBPalette
+	ld d,PAL_REDMON
+	ld e,2
+	callba LoadSGBPalette
+	ld d,PAL_YELLOWMON
+	ld e,3
+	callba LoadSGBPalette
+
+	; Leafs palette
+IF GEN_2_GRAPHICS
+    ld d, PAL_ERIKA
+ELSE
+	ld d, PAL_REDMON
+ENDC
+	ld e,4
+	callba LoadSGBPalette
+
+	; Palette for border tiles
+    ld d, PAL_GREENMON
+	ld e,5
+	callba LoadSGBPalette
+
+	; Load palette map
+	ld hl, BadgePalettes
+	ld a, BANK(BadgePalettes)
+	ld de, W2_TilesetPaletteMap
+	ld bc, $60
+	call FarCopyData
+	; Set everything else to be red or blue (depending on game)
+	push de
+	pop hl
+	ld bc, $a0
+	ld a,5
+	call FillMemory
+
+
+	; Wait 2 frames before updating palettes
+	ld c,2
+	call DelayFrames
+
+	ld a,1
+	ld [W2_ForceBGPUpdate],a ; Signal to update palettes
+	ld [rSVBK],a
+	ret
 
 ; Clear colors after titlescreen
 SetPal_OakIntro:

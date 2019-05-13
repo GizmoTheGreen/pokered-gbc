@@ -506,7 +506,13 @@ StartMenu_TrainerInfo:
 	ld [hTilesetType], a
 	call DrawTrainerInfo
 	predef DrawBadges ; draw badges
-	ld b, SET_PAL_TRAINER_CARD
+    ld b, SET_PAL_TRAINER_CARD ; set normal palettes.
+	ld a, [wPlayerGender] ;check gender
+	and a                 ;check gender
+	jr z, .NotLeaf
+	ld b, SET_PAL_TRAINER_CARD_GREEN ; overwrite with leaf palettes
+.NotLeaf
+    ;; resume normal code, load current palettes.
 	call RunPaletteCommand
 	call GBPalNormal
 	call WaitForTextScrollButtonPress ; wait for button press

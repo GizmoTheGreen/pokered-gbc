@@ -61,8 +61,16 @@ ColorOverworldSprite:
 	ld d,wSpriteStateData1>>8
 	ld a,[de]		; Load A with picture ID
 	dec a
+	;HAX
+	ld [hColorHackTmp], a ;borrowing this to preserve a!
+	ld de, SpritePaletteAssignments ;load male paletteset
+	ld a, [wPlayerGender] ;gendercheck
+	and a                 ;gendercheck
+    jr z, .NotLeaf
+	ld de, SpritePaletteAssignments_Leaf ;load female palette set.
+.NotLeaf
+    ld a, [hColorHackTmp] ;restore a to continue normal codeflow.
 
-	ld de, SpritePaletteAssignments
 	add e
 	ld e,a
 	jr nc,.noCarry
@@ -278,9 +286,6 @@ ClearSpritePaletteMap:
 SpritePaletteAssignments: ; Characters on the overworld
 	; 0x01: SPRITE_RED
 	db SPR_PAL_ORANGE
-	
-	; SPRITE_LEAF
-	db SPR_PAL_GREEN
 
 	; 0x02: SPRITE_BLUE
 	db SPR_PAL_BLUE
@@ -504,6 +509,232 @@ SpritePaletteAssignments: ; Characters on the overworld
 	; 0x48: SPRITE_LYING_OLD_MAN
 	db SPR_PAL_BROWN
 
+SpritePaletteAssignments_Leaf: ; Characters on the overworld
+	; 0x01: SPRITE_RED
+	db SPR_PAL_GREEN
+
+	; 0x02: SPRITE_BLUE
+	db SPR_PAL_BLUE
+
+	; 0x03: SPRITE_OAK
+	db SPR_PAL_BROWN
+
+	; 0x04: SPRITE_BUG_CATCHER
+	db 4
+
+	; 0x05: SPRITE_SLOWBRO
+	db SPR_PAL_ORANGE
+
+	; 0x06: SPRITE_LASS
+	db 4
+
+	; 0x07: SPRITE_BLACK_HAIR_BOY_1
+	db 4
+
+	; 0x08: SPRITE_LITTLE_GIRL
+	db 4
+
+	; 0x09: SPRITE_BIRD
+	db SPR_PAL_ORANGE
+
+	; 0x0a: SPRITE_FAT_BALD_GUY
+	db 4
+
+	; 0x0b: SPRITE_GAMBLER
+	db 4
+
+	; 0x0c: SPRITE_BLACK_HAIR_BOY_2
+	db 4
+
+	; 0x0d: SPRITE_GIRL
+	db 4
+
+	; 0x0e: SPRITE_HIKER
+	db 4
+
+	; 0x0f: SPRITE_FOULARD_WOMAN
+	db 4
+
+	; 0x10: SPRITE_GENTLEMAN
+	db SPR_PAL_BLUE
+
+	; 0x11: SPRITE_DAISY
+	db SPR_PAL_BLUE
+
+	; 0x12: SPRITE_BIKER
+	db 4
+
+	; 0x13: SPRITE_SAILOR
+	db 4
+
+	; 0x14: SPRITE_COOK
+	db 4
+
+	; 0x15: SPRITE_BIKE_SHOP_GUY
+	db 4
+
+	; 0x16: SPRITE_MR_FUJI
+	db SPR_PAL_GREEN
+
+	; 0x17: SPRITE_GIOVANNI
+	db SPR_PAL_BLUE
+
+	; 0x18: SPRITE_ROCKET
+	db SPR_PAL_BROWN
+
+	; 0x19: SPRITE_MEDIUM
+	db 4
+
+	; 0x1a: SPRITE_WAITER
+	db 4
+
+	; 0x1b: SPRITE_ERIKA
+	db 4
+
+	; 0x1c: SPRITE_MOM_GEISHA
+	db 4
+
+	; 0x1d: SPRITE_BRUNETTE_GIRL
+	db 4
+
+	; 0x1e: SPRITE_LANCE
+	db SPR_PAL_ORANGE
+
+	; 0x1f: SPRITE_OAK_SCIENTIST_AIDE
+	db SPR_PAL_BROWN
+
+	; 0x20: SPRITE_OAK_AIDE
+	db SPR_PAL_BROWN
+
+	; 0x21: SPRITE_ROCKER ($20)
+	db 4
+
+	; 0x22: SPRITE_SWIMMER
+	db 4
+
+	; 0x23: SPRITE_WHITE_PLAYER
+	db 4
+
+	; 0x24: SPRITE_GYM_HELPER
+	db 4
+
+	; 0x25: SPRITE_OLD_PERSON
+	db 4
+
+	; 0x26: SPRITE_MART_GUY
+	db 4
+
+	; 0x27: SPRITE_FISHER
+	db 4
+
+	; 0x28: SPRITE_OLD_MEDIUM_WOMAN
+	db 4
+
+	; 0x29: SPRITE_NURSE
+	db SPR_PAL_ORANGE
+
+	; 0x2a: SPRITE_CABLE_CLUB_WOMAN
+	db SPR_PAL_GREEN
+
+	; 0x2b: SPRITE_MR_MASTERBALL
+	db 4
+
+	; 0x2c: SPRITE_LAPRAS_GIVER
+	db 4
+
+	; 0x2d: SPRITE_WARDEN
+	db 4
+
+	; 0x2e: SPRITE_SS_CAPTAIN
+	db 4
+
+	; 0x2f: SPRITE_FISHER2
+	db 4
+
+	; 0x30: SPRITE_BLACKBELT
+	db 4
+
+	; 0x31: SPRITE_GUARD ($30)
+	db 4
+
+	; 0x32: $32
+	db 4
+
+	; 0x33: SPRITE_MOM
+	db 4
+
+	; 0x34: SPRITE_BALDING_GUY
+	db 4
+
+	; 0x35: SPRITE_YOUNG_BOY
+	db 4
+
+	; 0x36: SPRITE_GAMEBOY_KID
+	db 4
+
+	; 0x37: SPRITE_GAMEBOY_KID_COPY
+	db 4
+
+	; 0x38: SPRITE_CLEFAIRY
+	db SPR_PAL_ORANGE
+
+	; 0x39: SPRITE_AGATHA
+	db SPR_PAL_BLUE
+
+	; 0x3a: SPRITE_BRUNO
+	db SPR_PAL_BROWN
+
+	; 0x3b: SPRITE_LORELEI
+	db SPR_PAL_ORANGE
+
+	; 0x3c: SPRITE_SEEL
+	db SPR_PAL_ORANGE
+	
+	;BILL
+	db SPR_PAL_ORANGE
+	
+	; 0x49?: SPRITE_OFFICER_JENNY
+	db SPR_PAL_BLUE
+
+	; 0x3d: SPRITE_BALL
+	db SPR_PAL_ORANGE
+	
+	; SPRITE BILL
+	db SPR_PAL_ORANGE
+
+	; 0x3e: SPRITE_OMANYTE
+	db SPR_PAL_ORANGE
+
+	; 0x3f: SPRITE_BOULDER
+	db SPR_PAL_BROWN
+
+	; 0x40: SPRITE_PAPER_SHEET
+	db SPR_PAL_BROWN
+
+	; 0x41: SPRITE_BOOK_MAP_DEX
+	db SPR_PAL_ORANGE
+
+	; 0x42: SPRITE_CLIPBOARD
+	db SPR_PAL_BROWN
+
+	; 0x43: SPRITE_SNORLAX
+	db SPR_PAL_ORANGE
+
+	; 0x44: SPRITE_OLD_AMBER_COPY
+	db SPR_PAL_BROWN
+
+	; 0x45: SPRITE_OLD_AMBER
+	db SPR_PAL_BROWN
+
+	; 0x46: SPRITE_LYING_OLD_MAN_UNUSED_1
+	db 4
+
+	; 0x47: SPRITE_LYING_OLD_MAN_UNUSED_2
+	db 4
+
+	; 0x48: SPRITE_LYING_OLD_MAN
+	db SPR_PAL_BROWN	
+	
 AnimationTileset1Palettes:
 	INCBIN "color/data/animtileset1palettes.bin"
 

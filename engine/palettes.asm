@@ -53,6 +53,7 @@ SetPalFunctions:
 	dw SetPal_PokemonWholeScreen
 	dw SetPal_GameFreakIntro
 	dw SetPal_TrainerCard
+	dw SetPal_TrainerCard_Green
 	; Past here are codes which didn't previously exist.
 	dw SetPal_OakIntro	   ; Set prof oak's color
 	dw SetPal_NameEntry	   ; Name entry (partially replaces 08)

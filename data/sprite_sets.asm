@@ -194,11 +194,6 @@ SpriteSheetPointerTable:
 	dw RedSprite
 	db $c0 ; byte count
 	db BANK(RedSprite)
-	
-	; SPRITE_LEAF
-	dw LeafSprite
-	db $c0 ; byte count
-	db BANK(LeafSprite)
 
 	; SPRITE_BLUE
 	dw BlueSprite

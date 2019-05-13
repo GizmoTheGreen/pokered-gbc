@@ -16,7 +16,6 @@ const_value = 0
 const_value = 1
 
 	const SPRITE_RED                       ; $01
-	const SPRITE_LEAF
 	const SPRITE_BLUE                      ; $02
 	const SPRITE_OAK                       ; $03
 	const SPRITE_BUG_CATCHER               ; $04
